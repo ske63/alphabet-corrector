@@ -57,6 +57,15 @@ public class CharacterHandler : MonoBehaviour
 			
 			MoveLeft ( ConstValues.LeftRightMoveValue );
 		}
+		
+		// ジャンプ
+		if ( Input.GetKeyDown ( ConstValues.MoveJump ) )
+		{
+			// デバッグログ
+			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressed Key : " + ConstValues.MoveJump );
+			
+			MoveJump ( ConstValues.JumpUpwardValue );
+		}
 	}
 
 	// 右に動く
@@ -77,6 +86,14 @@ public class CharacterHandler : MonoBehaviour
 		MainRigidbody2D.AddForce ( transform.right * moveValue * -1 );
 	}
 
+	// ジャンプする
+	private void MoveJump ( float moveValue )
+	{
+		// デバッグログ
+		Debug.Log ( "CharacterHandler-Class MoveJump-Method  moveValue : " + moveValue );
+		
+		MainRigidbody2D.AddForce ( transform.up * moveValue );
+	}
 
 	// Rigidbody2DComponentを取得する
 	private Rigidbody2D getRigidbody2D ()
