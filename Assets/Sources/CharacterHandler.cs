@@ -100,6 +100,7 @@ public class CharacterHandler : MonoBehaviour
 
 		if ( collision.gameObject.tag == "Ground" )
 		{
+			// GameObjectのTagが"Ground"の場合、接地として扱う
 			IsGround = true;
 
 			// デバッグログ
@@ -120,6 +121,7 @@ public class CharacterHandler : MonoBehaviour
 
 		if ( collision.gameObject.tag == "Ground" )
 		{
+			// GameObjectのTagが"Ground"の場合、地面から離れたとして扱う
 			IsGround = false;
 
 			// デバッグログ
@@ -150,6 +152,7 @@ public class CharacterHandler : MonoBehaviour
 	private int GetKeyInputHorizontalDirection ()
 	{
 		// 左右移動
+		// 右を優先的に設定する
 		if ( Input.GetKey ( ConstValues.MoveRightKey ) )
 		{
 			// デバッグログ
@@ -177,6 +180,7 @@ public class CharacterHandler : MonoBehaviour
 	private int GetKeyInputVerticalOrientation ()
 	{
 		// 上下移動
+		// 上を優先的に設定する
 		if ( Input.GetKey ( ConstValues.MoveUpKey ) )
 		{
 			// デバッグログ
@@ -220,6 +224,8 @@ public class CharacterHandler : MonoBehaviour
 	{
 		if ( HorizontalMoveDirection != 0 )
 		{
+			// 左右移動がある場合、入力キーに応じて移動する
+
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  HorizontalMoveDirection : " + HorizontalMoveDirection );
 
@@ -232,6 +238,7 @@ public class CharacterHandler : MonoBehaviour
 		}
 		else
 		{
+			// 左右移動がない場合、慣性を減衰させる
 			AttenuateHorizontalOrientationInertia ( ConstValues.InertiaAttenuationValueAtStop );
 		}
 
@@ -307,6 +314,7 @@ public class CharacterHandler : MonoBehaviour
 	{
 		if ( MainRigidbody2D.velocity.x == 0 )
 		{
+			// 移動していない場合は処理をしない
 			return;
 		}
 
@@ -314,6 +322,7 @@ public class CharacterHandler : MonoBehaviour
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  AttenuationValue : " + AttenuationValue );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  MainRigidbody2D.velocity.x : " + MainRigidbody2D.velocity.x );
 
+		// 水平方向の速度のみを減衰する
 		MainRigidbody2D.velocity = new Vector2 (
 			MainRigidbody2D.velocity.x / AttenuationValue
 			, MainRigidbody2D.velocity.y
@@ -353,6 +362,7 @@ public class CharacterHandler : MonoBehaviour
 			&& ( horizontalFacing == 0 || transform.localScale.x == ( float ) horizontalFacing )
 		)
 		{
+			// Spriteと向きに変更がない場合は処理をしない
 			return;
 		}
 
@@ -364,6 +374,7 @@ public class CharacterHandler : MonoBehaviour
 
 		if ( horizontalFacing != 0 )
 		{
+			// 向きに変更がある場合のみ処理
 			transform.localScale = new Vector3 ( horizontalFacing, 1, 1 );
 		}
 	}
