@@ -324,7 +324,6 @@ GameObject:
   - component: {fileID: 829634857}
   - component: {fileID: 829634855}
   - component: {fileID: 829634856}
-  - component: {fileID: 829634858}
   m_Layer: 0
   m_Name: Hero Character
   m_TagString: Player
@@ -347,7 +346,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -460,21 +459,6 @@ CircleCollider2D:
   m_Offset: {x: -0.082306266, y: 2.7023869}
   serializedVersion: 2
   m_Radius: 1.1055652
---- !u!114 &829634858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829634851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962cc7c9433da8248a5c86d026d65000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IdleSprite: {fileID: 21300000, guid: fee223ddc5eb4314886f724278f6f624, type: 3}
-  MoveSprite: {fileID: 21300000, guid: d31ec00ef0cdd294380927f1703eadc5, type: 3}
-  JumpSprite: {fileID: 21300000, guid: 6392073b8001f2d4d8b18ab4840137c6, type: 3}
 --- !u!1 &1677164868
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,11 +493,12 @@ MonoBehaviour:
   MoveUpKey: 0
   MoveDownKey: 0
   MoveJumpKey: 273
-  RunForce: 1.5
-  RunSpeed: 0.5
-  RunThreshold: 2.2
-  JumpForce: 22
-  JumpThreshold: 1
+  RunForce: 40
+  RunSpeed: 15
+  RunThreshold: 30
+  InertiaAttenuationValueAtStop: 1.1
+  JumpForce: 1200
+  JumpThreshold: 0
 --- !u!4 &1677164870
 Transform:
   m_ObjectHideFlags: 0

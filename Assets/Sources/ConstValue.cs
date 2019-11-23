@@ -15,8 +15,12 @@ public class ConstValue : MonoBehaviour
 	public KeyCode MoveJumpKey;		// ジャンプ
 
 	// 移動値系
-	public float RunForce;			// 左右の初速移動力
-	public float JumpForce;			// ジャンプの上昇力
+	public float RunForce;							// 左右の初速移動力
+	public float RunSpeed;							// 左右の移動速度
+	public float RunThreshold;						// 速度切替判定のためのしきい値
+	public float InertiaAttenuationValueAtStop;		// 停止時の慣性の減衰値  1より小さくすると逆に加速するので注意
+	public float JumpForce;							// ジャンプの上昇力
+	public float JumpThreshold;						// ジャンプ中か判定するためのしきい値
 
 
 	// Start is called before the first frame update
