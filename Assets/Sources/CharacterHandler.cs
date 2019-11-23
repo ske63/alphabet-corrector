@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 
@@ -21,13 +22,13 @@ public class CharacterHandler : MonoBehaviour
 		ConstValues = GameManager.GetComponent<ConstValue> ();
 		
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveRightKey : " + ConstValues.MoveRightKey );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveLeftKey : " + ConstValues.MoveLeftKey );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveUpKey : " + ConstValues.MoveUpKey );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveDownKey : " + ConstValues.MoveDownKey );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveJumpKey : " + ConstValues.MoveJumpKey );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.RunForce : " + ConstValues.RunForce );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.JumpForce : " + ConstValues.JumpForce );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveRightKey : " + ConstValues.MoveRightKey );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveLeftKey : " + ConstValues.MoveLeftKey );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveUpKey : " + ConstValues.MoveUpKey );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveDownKey : " + ConstValues.MoveDownKey );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveJumpKey : " + ConstValues.MoveJumpKey );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.RunForce : " + ConstValues.RunForce );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.JumpForce : " + ConstValues.JumpForce );
 		
 		// Rigidbody2Dの取得
 		MainRigidbody2D = GetRigidbody2D ();
@@ -46,14 +47,14 @@ public class CharacterHandler : MonoBehaviour
 		if ( Input.GetKey ( ConstValues.MoveRightKey ) )
 		{
 			// デバッグログ
-			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressing Key : " + ConstValues.MoveRightKey );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressing Key : " + ConstValues.MoveRightKey );
 			
 			MoveRight ( ConstValues.RunForce );
 		}
 		else if ( Input.GetKey ( ConstValues.MoveLeftKey ) )
 		{
 			// デバッグログ
-			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressing Key : " + ConstValues.MoveLeftKey );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressing Key : " + ConstValues.MoveLeftKey );
 			
 			MoveLeft ( ConstValues.RunForce );
 		}
@@ -62,7 +63,7 @@ public class CharacterHandler : MonoBehaviour
 		if ( Input.GetKeyDown ( ConstValues.MoveJumpKey ) )
 		{
 			// デバッグログ
-			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressed Key : " + ConstValues.MoveJumpKey );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressed Key : " + ConstValues.MoveJumpKey );
 			
 			MoveJump ( ConstValues.JumpForce );
 		}
@@ -72,7 +73,7 @@ public class CharacterHandler : MonoBehaviour
 	private void MoveRight ( float moveForce )
 	{
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class MoveRight-Method  moveForce : " + moveForce );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveForce : " + moveForce );
 		
 		MainRigidbody2D.AddForce ( transform.right * moveForce );
 	}
@@ -81,7 +82,7 @@ public class CharacterHandler : MonoBehaviour
 	private void MoveLeft ( float moveForce )
 	{
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class MoveLeft-Method  moveForce : " + moveForce );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveForce : " + moveForce );
 		
 		MainRigidbody2D.AddForce ( transform.right * moveForce * -1 );
 	}
@@ -90,7 +91,7 @@ public class CharacterHandler : MonoBehaviour
 	private void MoveJump ( float moveForce )
 	{
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class MoveJump-Method  moveForce : " + moveForce );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveForce : " + moveForce );
 		
 		MainRigidbody2D.AddForce ( transform.up * moveForce );
 	}

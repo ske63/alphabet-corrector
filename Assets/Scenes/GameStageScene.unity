@@ -509,8 +509,11 @@ MonoBehaviour:
   MoveUpKey: 0
   MoveDownKey: 0
   MoveJumpKey: 273
-  RunForce: 30
-  JumpForce: 100
+  RunForce: 1.5
+  RunSpeed: 0.5
+  RunThreshold: 2.2
+  JumpForce: 22
+  JumpThreshold: 1
 --- !u!4 &1677164870
 Transform:
   m_ObjectHideFlags: 0
