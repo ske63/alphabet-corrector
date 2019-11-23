@@ -21,16 +21,16 @@ public class CharacterHandler : MonoBehaviour
 		ConstValues = GameManager.GetComponent<ConstValue> ();
 		
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveRight : " + ConstValues.MoveRight );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveLeft : " + ConstValues.MoveLeft );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveUp : " + ConstValues.MoveUp );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveDown : " + ConstValues.MoveDown );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveJump : " + ConstValues.MoveJump );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.LeftRightMoveValue : " + ConstValues.LeftRightMoveValue );
-		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.JumpUpwardValue : " + ConstValues.JumpUpwardValue );
+		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveRightKey : " + ConstValues.MoveRightKey );
+		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveLeftKey : " + ConstValues.MoveLeftKey );
+		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveUpKey : " + ConstValues.MoveUpKey );
+		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveDownKey : " + ConstValues.MoveDownKey );
+		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.MoveJumpKey : " + ConstValues.MoveJumpKey );
+		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.RunForce : " + ConstValues.RunForce );
+		Debug.Log ( "CharacterHandler-Class Start-Method  ConstValues.JumpForce : " + ConstValues.JumpForce );
 		
 		// Rigidbody2Dの取得
-		MainRigidbody2D = getRigidbody2D ();
+		MainRigidbody2D = GetRigidbody2D ();
 	}
 
 	// Update is called once per frame
@@ -43,60 +43,60 @@ public class CharacterHandler : MonoBehaviour
 	private void MoveCharacter ()
 	{
 		// 左右移動
-		if ( Input.GetKey ( ConstValues.MoveRight ) )
+		if ( Input.GetKey ( ConstValues.MoveRightKey ) )
 		{
 			// デバッグログ
-			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressing Key : " + ConstValues.MoveRight );
+			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressing Key : " + ConstValues.MoveRightKey );
 			
-			MoveRight ( ConstValues.LeftRightMoveValue );
+			MoveRight ( ConstValues.RunForce );
 		}
-		else if ( Input.GetKey ( ConstValues.MoveLeft ) )
+		else if ( Input.GetKey ( ConstValues.MoveLeftKey ) )
 		{
 			// デバッグログ
-			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressing Key : " + ConstValues.MoveLeft );
+			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressing Key : " + ConstValues.MoveLeftKey );
 			
-			MoveLeft ( ConstValues.LeftRightMoveValue );
+			MoveLeft ( ConstValues.RunForce );
 		}
 		
 		// ジャンプ
-		if ( Input.GetKeyDown ( ConstValues.MoveJump ) )
+		if ( Input.GetKeyDown ( ConstValues.MoveJumpKey ) )
 		{
 			// デバッグログ
-			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressed Key : " + ConstValues.MoveJump );
+			Debug.Log ( "CharacterHandler-Class MoveCharacter-Method  Pressed Key : " + ConstValues.MoveJumpKey );
 			
-			MoveJump ( ConstValues.JumpUpwardValue );
+			MoveJump ( ConstValues.JumpForce );
 		}
 	}
 
 	// 右に動く
-	private void MoveRight ( float moveValue )
+	private void MoveRight ( float moveForce )
 	{
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class MoveRight-Method  moveValue : " + moveValue );
+		Debug.Log ( "CharacterHandler-Class MoveRight-Method  moveForce : " + moveForce );
 		
-		MainRigidbody2D.AddForce ( transform.right * moveValue );
+		MainRigidbody2D.AddForce ( transform.right * moveForce );
 	}
 
 	// 左に動く
-	private void MoveLeft ( float moveValue )
+	private void MoveLeft ( float moveForce )
 	{
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class MoveLeft-Method  moveValue : " + moveValue );
+		Debug.Log ( "CharacterHandler-Class MoveLeft-Method  moveForce : " + moveForce );
 		
-		MainRigidbody2D.AddForce ( transform.right * moveValue * -1 );
+		MainRigidbody2D.AddForce ( transform.right * moveForce * -1 );
 	}
 
 	// ジャンプする
-	private void MoveJump ( float moveValue )
+	private void MoveJump ( float moveForce )
 	{
 		// デバッグログ
-		Debug.Log ( "CharacterHandler-Class MoveJump-Method  moveValue : " + moveValue );
+		Debug.Log ( "CharacterHandler-Class MoveJump-Method  moveForce : " + moveForce );
 		
-		MainRigidbody2D.AddForce ( transform.up * moveValue );
+		MainRigidbody2D.AddForce ( transform.up * moveForce );
 	}
 
 	// Rigidbody2DComponentを取得する
-	private Rigidbody2D getRigidbody2D ()
+	private Rigidbody2D GetRigidbody2D ()
 	{
 		return gameObject.GetComponent<Rigidbody2D> ();
 	}

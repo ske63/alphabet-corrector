@@ -7,26 +7,26 @@ using UnityEngine;
 public class ConstValue : MonoBehaviour
 {
 	// 移動系
-	public KeyCode MoveRight;	// 右移動
-	public KeyCode MoveLeft;	// 左移動
-	public KeyCode MoveUp;		// 上移動
-	public KeyCode MoveDown;	// 下移動
-	public KeyCode MoveJump;	// ジャンプ
+	public KeyCode MoveRightKey;	// 右移動
+	public KeyCode MoveLeftKey;		// 左移動
+	public KeyCode MoveUpKey;		// 上移動
+	public KeyCode MoveDownKey;		// 下移動
+	public KeyCode MoveJumpKey;		// ジャンプ
 	
 	// 移動値系
-	public float LeftRightMoveValue;	// 左右の移動値
-	public float JumpUpwardValue;		// ジャンプの上昇値
+	public float RunForce;			// 左右の初速移動力
+	public float JumpForce;			// ジャンプの上昇力
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		// デバッグログ
-		Debug.Log ( "ConstValue-Class Start-Method  MoveRight : " + MoveRight );
-		Debug.Log ( "ConstValue-Class Start-Method  MoveLeft : " + MoveLeft );
-		Debug.Log ( "ConstValue-Class Start-Method  MoveUp : " + MoveUp );
-		Debug.Log ( "ConstValue-Class Start-Method  MoveDown : " + MoveDown );
-		Debug.Log ( "ConstValue-Class Start-Method  MoveJump : " + MoveJump );
-		Debug.Log ( "ConstValue-Class Start-Method  LeftRightMoveValue : " + LeftRightMoveValue );
-		Debug.Log ( "ConstValue-Class Start-Method  JumpUpwardValue : " + JumpUpwardValue );
+		Debug.Log ( "ConstValue-Class Start-Method  MoveRightKey : " + MoveRightKey );
+		Debug.Log ( "ConstValue-Class Start-Method  MoveLeftKey : " + MoveLeftKey );
+		Debug.Log ( "ConstValue-Class Start-Method  MoveUpKey : " + MoveUpKey );
+		Debug.Log ( "ConstValue-Class Start-Method  MoveDownKey : " + MoveDownKey );
+		Debug.Log ( "ConstValue-Class Start-Method  MoveJumpKey : " + MoveJumpKey );
+		Debug.Log ( "ConstValue-Class Start-Method  RunForce : " + RunForce );
+		Debug.Log ( "ConstValue-Class Start-Method  JumpForce : " + JumpForce );
 	}
 }
