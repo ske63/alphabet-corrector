@@ -413,6 +413,11 @@ public class CharacterHandler : MonoBehaviour
 // Member変数のProperty
 // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
+	public List<string> GetAcquiredAlphabetList ()
+	{
+		return AcquiredAlphabetList;
+	}
+
 	// Rigidbody2DComponentを取得する
 	private Rigidbody2D GetRigidbody2D ()
 	{
