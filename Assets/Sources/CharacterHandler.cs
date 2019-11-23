@@ -31,6 +31,9 @@ public class CharacterHandler : MonoBehaviour
 	// キャラのSpriteRendererのComponent
 	private SpriteRenderer MainSpriteRenderer;
 
+	// 取得したAlphabetの一覧
+	private List<string> AcquiredAlphabetList;
+
 	// 水平移動方向  -1:左, 0:無, 1:右
 	private int HorizontalMoveDirection;
 //	private int PreviousHorizontalMoveDirection = 0;  // 1つ前の状態
@@ -75,6 +78,9 @@ public class CharacterHandler : MonoBehaviour
 
 		// SpriteRendererComponentを取得
 		MainSpriteRenderer = GetSpriteRenderer ();
+
+		// Member変数の初期化
+		AcquiredAlphabetList = new List<string> ();
 	}
 
 	// Update is called once per frame
@@ -126,6 +132,29 @@ public class CharacterHandler : MonoBehaviour
 
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
+		}
+	}
+
+	// Objectに触れたときに自動で呼び出し
+	void OnTriggerEnter2D ( Collider2D collider )
+	{
+		// デバッグログ
+		// 触れられているObject(される側)
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collider.gameObject.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collider.gameObject.tag );
+
+		if ( collider.gameObject.tag == "Item-Alphabet" )
+		{
+			// 触れたAlphabetを取得リストに格納
+			string[] DividedString = collider.gameObject.name.Split ( '-' );
+			AcquiredAlphabetList.Add ( DividedString[1] );
+
+			// デバッグログ
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  DividedString[1] :" + DividedString[1] );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  AcquiredAlphabetList.Count :" + AcquiredAlphabetList.Count );
+
+			// 取得したAlphabetObjectは削除
+			Destroy ( collider.gameObject );
 		}
 	}
 
