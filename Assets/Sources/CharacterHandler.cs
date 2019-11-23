@@ -4,27 +4,38 @@ using System.Reflection;
 using UnityEngine;
 
 
-// キャラの移動を扱うクラス
+// キャラを扱うクラス
 public class CharacterHandler : MonoBehaviour
 {
+	// 各移動状態のSpriteを設定
+	public Sprite IdleSprite;	// 待機
+	public Sprite MoveSprite;	// 移動
+	public Sprite JumpSprite;	// ジャンプ
+	
+	
 	// 定数クラス
 	private ConstValue ConstValues;
 	
 	// キャラのRigidbody2DComponent
 	private Rigidbody2D MainRigidbody2D;
 	
+	// キャラのSpriteRendererのComponent
+	private SpriteRenderer MainSpriteRenderer;
+	
 	// 水平移動方向  -1:左, 0:無, 1:右
 	private int HorizontalMoveDirection;
-//	private int PreviousHorizontalMoveDirection;  // 1つ前の状態
+//	private int PreviousHorizontalMoveDirection = 0;  // 1つ前の状態
 	
 	// 垂直移動方向  -1:下, 0:無, 1:上
 	private int VerticalMoveDirection;
-//	private int PreviousVerticalMoveDirection;  // 1つ前の状態
+//	private int PreviousVerticalMoveDirection = 0;  // 1つ前の状態
 	
 	// ジャンプするか
 	private bool IsJump;
-//	private bool WasJump;  // 1つ前の状態
+//	private bool WasJump = false;  // 1つ前の状態
 	
+	// 判定系
+	private bool IsGround;	// 接地しているか
 	
 	// Start is called before the first frame update
 	void Start()
@@ -44,6 +55,9 @@ public class CharacterHandler : MonoBehaviour
 		
 		// Rigidbody2Dの取得
 		MainRigidbody2D = GetRigidbody2D ();
+		
+		// SpriteRendererComponentを取得
+		MainSpriteRenderer = GetSpriteRenderer ();
 	}
 
 	// Update is called once per frame
@@ -51,7 +65,43 @@ public class CharacterHandler : MonoBehaviour
 	{
 		GetInputKey ();
 		MoveCharacter ();
+		UpdateSprite ();
 	}
+	
+	// Objectに触れたときに自動で呼び出し
+	void OnCollisionEnter2D ( Collision2D collision )
+	{
+		// デバッグログ
+		// 触れられているObject(される側)
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collision.gameObject.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collision.gameObject.tag );
+		
+		if ( collision.gameObject.tag == "Ground" )
+		{
+			IsGround = true;
+			
+			// デバッグログ
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
+		}
+	}
+
+	// Objectから離れたときに自動で呼び出し
+	void OnCollisionExit2D ( Collision2D collision )
+	{
+		// デバッグログ
+		// 触れられているObject(される側)
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collision.gameObject.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collision.gameObject.tag );
+		
+		if ( collision.gameObject.tag == "Ground" )
+		{
+			IsGround = false;
+			
+			// デバッグログ
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
+		}
+	}
+	
 	
 	// 入力しているキーを取得する
 	private void GetInputKey ()
@@ -216,10 +266,51 @@ public class CharacterHandler : MonoBehaviour
 			, MainRigidbody2D.velocity.y
 		);
 	}
+	
+	// キャラの状態に応じてSpriteを更新する
+	private void UpdateSprite ()
+	{
+		if ( !IsGround )
+		{
+			// 接地していないときはジャンプSpriteに更新
+			UpdateSprite ( JumpSprite );
+		}
+		else if ( HorizontalMoveDirection != 0 )
+		{
+			// 接地していて水平移動しているときは移動Spriteに更新
+			UpdateSprite ( MoveSprite );
+		}
+		else
+		{
+			// 何もしていないときは待機Spriteに更新
+			UpdateSprite ( IdleSprite );
+		}
+	}
+	
+	// Spriteを更新する
+	private void UpdateSprite ( Sprite sprite )
+	{
+		if ( MainSpriteRenderer.sprite == sprite )
+		{
+			return;
+		}
+		
+		// デバッグログ
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Update to sprite : " + sprite.name );
+		
+		MainSpriteRenderer.sprite = sprite;
+	}
 
+	
 	// Rigidbody2DComponentを取得する
 	private Rigidbody2D GetRigidbody2D ()
 	{
 		return gameObject.GetComponent<Rigidbody2D> ();
+	}
+	
+	// SpriteRendererComponentを取得する
+	private SpriteRenderer GetSpriteRenderer ()
+	{
+		return gameObject.GetComponent<SpriteRenderer> ();
 	}
 }

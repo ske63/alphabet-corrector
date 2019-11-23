@@ -443,6 +443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25e4cef2362ca44eb48a1d58bfcf7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IdleSprite: {fileID: 21300000, guid: fee223ddc5eb4314886f724278f6f624, type: 3}
+  MoveSprite: {fileID: 21300000, guid: d31ec00ef0cdd294380927f1703eadc5, type: 3}
+  JumpSprite: {fileID: 21300000, guid: 6392073b8001f2d4d8b18ab4840137c6, type: 3}
 --- !u!58 &829634857
 CircleCollider2D:
   m_ObjectHideFlags: 0
