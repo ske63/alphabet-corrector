@@ -7,11 +7,20 @@ using UnityEngine;
 // キャラを扱うクラス
 public class CharacterHandler : MonoBehaviour
 {
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// Member変数 public
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+
 	// 各移動状態のSpriteを設定
 	public Sprite IdleSprite;	// 待機
 	public Sprite MoveSprite;	// 移動
 	public Sprite JumpSprite;	// ジャンプ
 
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// Member変数 private
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
 	// 定数クラス
 	private ConstValue ConstValues;
@@ -36,6 +45,11 @@ public class CharacterHandler : MonoBehaviour
 
 	// 判定系
 	private bool IsGround;	// 接地しているか
+
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// いつものStartとUpdate
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
 	// Start is called before the first frame update
 	void Start()
@@ -67,6 +81,11 @@ public class CharacterHandler : MonoBehaviour
 		MoveCharacter ();
 		UpdateSprite ();
 	}
+
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// 当たり判定の取得
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
 	// Objectに触れたときに自動で呼び出し
 	void OnCollisionEnter2D ( Collision2D collision )
@@ -102,6 +121,10 @@ public class CharacterHandler : MonoBehaviour
 		}
 	}
 
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// キー入力の取得
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
 	// 入力しているキーを取得する
 	private void GetInputKey ()
@@ -180,6 +203,11 @@ public class CharacterHandler : MonoBehaviour
 
 		return false;
 	}
+
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// Characterの動作
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
 	// キャラを動かす
 	private void MoveCharacter ()
@@ -267,6 +295,11 @@ public class CharacterHandler : MonoBehaviour
 		);
 	}
 
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// Characterの見た目の変更
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+
 	// キャラの状態に応じてSpriteを更新する
 	private void UpdateSprite ()
 	{
@@ -301,6 +334,10 @@ public class CharacterHandler : MonoBehaviour
 		MainSpriteRenderer.sprite = sprite;
 	}
 
+
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
+// Member変数のProperty
+// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
 	// Rigidbody2DComponentを取得する
 	private Rigidbody2D GetRigidbody2D ()
