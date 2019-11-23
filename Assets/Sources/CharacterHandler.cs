@@ -306,32 +306,41 @@ public class CharacterHandler : MonoBehaviour
 		if ( !IsGround )
 		{
 			// 接地していないときはジャンプSpriteに更新
-			UpdateSprite ( JumpSprite );
+			UpdateSprite ( JumpSprite, HorizontalMoveDirection );
 		}
 		else if ( HorizontalMoveDirection != 0 )
 		{
 			// 接地していて水平移動しているときは移動Spriteに更新
-			UpdateSprite ( MoveSprite );
+			UpdateSprite ( MoveSprite, HorizontalMoveDirection );
 		}
 		else
 		{
 			// 何もしていないときは待機Spriteに更新
-			UpdateSprite ( IdleSprite );
+			UpdateSprite ( IdleSprite, HorizontalMoveDirection );
 		}
 	}
 
 	// Spriteを更新する
-	private void UpdateSprite ( Sprite sprite )
+	private void UpdateSprite ( Sprite sprite, int horizontalFacing )
 	{
-		if ( MainSpriteRenderer.sprite == sprite )
+		if (
+			MainSpriteRenderer.sprite == sprite
+			&& ( horizontalFacing == 0 || transform.localScale.x == ( float ) horizontalFacing )
+		)
 		{
 			return;
 		}
 
 		// デバッグログ
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Update to sprite : " + sprite.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  horizontalFacing : " + horizontalFacing );
 
 		MainSpriteRenderer.sprite = sprite;
+
+		if ( horizontalFacing != 0 )
+		{
+			transform.localScale = new Vector3 ( horizontalFacing, 1, 1 );
+		}
 	}
 
 
