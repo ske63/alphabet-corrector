@@ -21,6 +21,7 @@ public class ConstValue : MonoBehaviour
 	public float InertiaAttenuationValueAtStop;		// 停止時の慣性の減衰値  1より小さくすると逆に加速するので注意
 	public float JumpForce;							// ジャンプの上昇力
 	public float JumpThreshold;						// ジャンプ中か判定するためのしきい値
+	public int TimesJumpableInAir;					// 空中でジャンプできる回数
 
 
 	// Start is called before the first frame update
@@ -38,5 +39,6 @@ public class ConstValue : MonoBehaviour
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  InertiaAttenuationValueAtStop : " + InertiaAttenuationValueAtStop );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  JumpForce : " + JumpForce );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  JumpThreshold : " + JumpThreshold );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  TimesJumpableInAir : " + TimesJumpableInAir );
 	}
 }

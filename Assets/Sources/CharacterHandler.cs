@@ -39,6 +39,9 @@ public class CharacterHandler : MonoBehaviour
 	private int VerticalMoveDirection;
 //	private int PreviousVerticalMoveDirection = 0;  // 1つ前の状態
 
+	// 空中でジャンプした回数
+	private int TimesJumpedInAir;
+
 	// ジャンプするか
 	private bool IsJump;
 //	private bool WasJump = false;  // 1つ前の状態
@@ -101,6 +104,9 @@ public class CharacterHandler : MonoBehaviour
 
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
+
+			// 接地したら空中でジャンプした回数をリセット
+			TimesJumpedInAir = 0;
 		}
 	}
 
@@ -234,7 +240,7 @@ public class CharacterHandler : MonoBehaviour
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsJump : " + IsJump );
 
-			MoveJump ( ConstValues.JumpForce );
+			MoveJump ( IsGround, ConstValues.TimesJumpableInAir, ConstValues.JumpForce );
 		}
 	}
 
@@ -269,12 +275,31 @@ public class CharacterHandler : MonoBehaviour
 	}
 
 	// ジャンプする
-	private void MoveJump ( float moveForce )
+	private void MoveJump ( bool isGround, int timesJumpableInAir, float moveForce )
 	{
+		// デバッグログ
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  TimesJumpedInAir : " + TimesJumpedInAir );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  timesJumpableInAir : " + timesJumpableInAir );
+
+		if (
+			!isGround
+			&& timesJumpableInAir <= TimesJumpedInAir
+		)
+		{
+			// 空中でジャンプできる回数を超えたらジャンプできない
+			return;
+		}
+
 		// デバッグログ
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveForce : " + moveForce );
 
 		MainRigidbody2D.AddForce ( transform.up * moveForce );
+
+		if ( !isGround )
+		{
+			// 地面からジャンプした場合は加算しない
+			TimesJumpedInAir++;
+		}
 	}
 
 	// 水平方向の慣性を減衰させる

@@ -502,6 +502,7 @@ MonoBehaviour:
   InertiaAttenuationValueAtStop: 1.1
   JumpForce: 1200
   JumpThreshold: 0
+  TimesJumpableInAir: 1
 --- !u!4 &1677164870
 Transform:
   m_ObjectHideFlags: 0
