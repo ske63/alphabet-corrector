@@ -33,6 +33,10 @@ public class ConstValue : MonoBehaviour
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  MoveDownKey : " + MoveDownKey );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  MoveJumpKey : " + MoveJumpKey );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  RunForce : " + RunForce );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  RunSpeed : " + RunSpeed );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  RunThreshold : " + RunThreshold );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  InertiaAttenuationValueAtStop : " + InertiaAttenuationValueAtStop );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  JumpForce : " + JumpForce );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  JumpThreshold : " + JumpThreshold );
 	}
 }

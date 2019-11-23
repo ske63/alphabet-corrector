@@ -58,14 +58,14 @@ public class CharacterHandler : MonoBehaviour
 		GameObject GameManager = GameObject.Find ( "GameManager" );
 		ConstValues = GameManager.GetComponent<ConstValue> ();
 
-		// デバッグログ
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveRightKey : " + ConstValues.MoveRightKey );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveLeftKey : " + ConstValues.MoveLeftKey );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveUpKey : " + ConstValues.MoveUpKey );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveDownKey : " + ConstValues.MoveDownKey );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveJumpKey : " + ConstValues.MoveJumpKey );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.RunForce : " + ConstValues.RunForce );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.JumpForce : " + ConstValues.JumpForce );
+//		// デバッグログ
+//		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveRightKey : " + ConstValues.MoveRightKey );
+//		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveLeftKey : " + ConstValues.MoveLeftKey );
+//		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveUpKey : " + ConstValues.MoveUpKey );
+//		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveDownKey : " + ConstValues.MoveDownKey );
+//		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveJumpKey : " + ConstValues.MoveJumpKey );
+//		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.RunForce : " + ConstValues.RunForce );
+//		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.JumpForce : " + ConstValues.JumpForce );
 
 		// Rigidbody2Dの取得
 		MainRigidbody2D = GetRigidbody2D ();
