@@ -11,39 +11,39 @@ public class CharacterHandler : MonoBehaviour
 	public Sprite IdleSprite;	// 待機
 	public Sprite MoveSprite;	// 移動
 	public Sprite JumpSprite;	// ジャンプ
-	
-	
+
+
 	// 定数クラス
 	private ConstValue ConstValues;
-	
+
 	// キャラのRigidbody2DComponent
 	private Rigidbody2D MainRigidbody2D;
-	
+
 	// キャラのSpriteRendererのComponent
 	private SpriteRenderer MainSpriteRenderer;
-	
+
 	// 水平移動方向  -1:左, 0:無, 1:右
 	private int HorizontalMoveDirection;
 //	private int PreviousHorizontalMoveDirection = 0;  // 1つ前の状態
-	
+
 	// 垂直移動方向  -1:下, 0:無, 1:上
 	private int VerticalMoveDirection;
 //	private int PreviousVerticalMoveDirection = 0;  // 1つ前の状態
-	
+
 	// ジャンプするか
 	private bool IsJump;
 //	private bool WasJump = false;  // 1つ前の状態
-	
+
 	// 判定系
 	private bool IsGround;	// 接地しているか
-	
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		// 定数クラスの取得
 		GameObject GameManager = GameObject.Find ( "GameManager" );
 		ConstValues = GameManager.GetComponent<ConstValue> ();
-		
+
 		// デバッグログ
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveRightKey : " + ConstValues.MoveRightKey );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveLeftKey : " + ConstValues.MoveLeftKey );
@@ -52,10 +52,10 @@ public class CharacterHandler : MonoBehaviour
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.MoveJumpKey : " + ConstValues.MoveJumpKey );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.RunForce : " + ConstValues.RunForce );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  ConstValues.JumpForce : " + ConstValues.JumpForce );
-		
+
 		// Rigidbody2Dの取得
 		MainRigidbody2D = GetRigidbody2D ();
-		
+
 		// SpriteRendererComponentを取得
 		MainSpriteRenderer = GetSpriteRenderer ();
 	}
@@ -67,7 +67,7 @@ public class CharacterHandler : MonoBehaviour
 		MoveCharacter ();
 		UpdateSprite ();
 	}
-	
+
 	// Objectに触れたときに自動で呼び出し
 	void OnCollisionEnter2D ( Collision2D collision )
 	{
@@ -75,11 +75,11 @@ public class CharacterHandler : MonoBehaviour
 		// 触れられているObject(される側)
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collision.gameObject.name );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collision.gameObject.tag );
-		
+
 		if ( collision.gameObject.tag == "Ground" )
 		{
 			IsGround = true;
-			
+
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
 		}
@@ -92,29 +92,29 @@ public class CharacterHandler : MonoBehaviour
 		// 触れられているObject(される側)
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collision.gameObject.name );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collision.gameObject.tag );
-		
+
 		if ( collision.gameObject.tag == "Ground" )
 		{
 			IsGround = false;
-			
+
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
 		}
 	}
-	
-	
+
+
 	// 入力しているキーを取得する
 	private void GetInputKey ()
 	{
 //		PreviousHorizontalMoveDirection = HorizontalMoveDirection;
 //		PreviousVerticalMoveDirection = VerticalMoveDirection;
 //		WasJump = IsJump;
-		
+
 		HorizontalMoveDirection = GetKeyInputHorizontalDirection ();
 		VerticalMoveDirection = GetKeyInputVerticalOrientation ();
 		IsJump = HasEnteredJumpKey ();
 	}
-	
+
 	// 水平方向の入力しているキーを取得する
 	// -1     0     1
 	// ←    ・    →
@@ -125,20 +125,20 @@ public class CharacterHandler : MonoBehaviour
 		{
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressing Key : " + ConstValues.MoveRightKey );
-			
+
 			return 1;
 		}
 		else if ( Input.GetKey ( ConstValues.MoveLeftKey ) )
 		{
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressing Key : " + ConstValues.MoveLeftKey );
-			
+
 			return -1;
 		}
-		
+
 		return 0;
 	}
-	
+
 	// 垂直方向の入力しているキーを取得する
 	// ↑ 1
 	//     
@@ -152,20 +152,20 @@ public class CharacterHandler : MonoBehaviour
 		{
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressing Key : " + ConstValues.MoveUpKey );
-			
+
 			return 1;
 		}
 		else if ( Input.GetKey ( ConstValues.MoveDownKey ) )
 		{
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressing Key : " + ConstValues.MoveDownKey );
-			
+
 			return -1;
 		}
-		
+
 		return 0;
 	}
-	
+
 	// ジャンプのキーが入力されているか
 	private bool HasEnteredJumpKey ()
 	{
@@ -174,10 +174,10 @@ public class CharacterHandler : MonoBehaviour
 		{
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Pressed Key : " + ConstValues.MoveJumpKey );
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -188,7 +188,7 @@ public class CharacterHandler : MonoBehaviour
 		{
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  HorizontalMoveDirection : " + HorizontalMoveDirection );
-			
+
 			MoveHorizontalDirection (
 				HorizontalMoveDirection
 				, ConstValues.RunForce
@@ -200,12 +200,12 @@ public class CharacterHandler : MonoBehaviour
 		{
 			AttenuateHorizontalOrientationInertia ( ConstValues.InertiaAttenuationValueAtStop );
 		}
-		
+
 		if ( IsJump )
 		{
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsJump : " + IsJump );
-			
+
 			MoveJump ( ConstValues.JumpForce );
 		}
 	}
@@ -223,7 +223,7 @@ public class CharacterHandler : MonoBehaviour
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveForce : " + moveForce );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveSpeed : " + moveSpeed );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveThreshold : " + moveThreshold );
-		
+
 		// 現在の水平の移動速度
 		// しきい値に達するまではAddforceで力を加え、それ以降はtransform.positionを直接書き換えて同一速度で移動する
 		float CurrentInHorizontalMoveSpeed = Mathf.Abs ( MainRigidbody2D.velocity.x );
@@ -235,7 +235,7 @@ public class CharacterHandler : MonoBehaviour
 		{
 			transform.position += new Vector3 ( horizontalMoveDirection * moveSpeed * Time.deltaTime, 0, 0 );
 		}
-		
+
 		// デバッグログ
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  CurrentInHorizontalMoveSpeed : " + CurrentInHorizontalMoveSpeed );
 	}
@@ -245,10 +245,10 @@ public class CharacterHandler : MonoBehaviour
 	{
 		// デバッグログ
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  moveForce : " + moveForce );
-		
+
 		MainRigidbody2D.AddForce ( transform.up * moveForce );
 	}
-	
+
 	// 水平方向の慣性を減衰させる
 	private void AttenuateHorizontalOrientationInertia ( float AttenuationValue )
 	{
@@ -256,17 +256,17 @@ public class CharacterHandler : MonoBehaviour
 		{
 			return;
 		}
-		
+
 		// デバッグログ
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  AttenuationValue : " + AttenuationValue );
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  MainRigidbody2D.velocity.x : " + MainRigidbody2D.velocity.x );
-		
+
 		MainRigidbody2D.velocity = new Vector2 (
 			MainRigidbody2D.velocity.x / AttenuationValue
 			, MainRigidbody2D.velocity.y
 		);
 	}
-	
+
 	// キャラの状態に応じてSpriteを更新する
 	private void UpdateSprite ()
 	{
@@ -286,7 +286,7 @@ public class CharacterHandler : MonoBehaviour
 			UpdateSprite ( IdleSprite );
 		}
 	}
-	
+
 	// Spriteを更新する
 	private void UpdateSprite ( Sprite sprite )
 	{
@@ -294,20 +294,20 @@ public class CharacterHandler : MonoBehaviour
 		{
 			return;
 		}
-		
+
 		// デバッグログ
 		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Update to sprite : " + sprite.name );
-		
+
 		MainSpriteRenderer.sprite = sprite;
 	}
 
-	
+
 	// Rigidbody2DComponentを取得する
 	private Rigidbody2D GetRigidbody2D ()
 	{
 		return gameObject.GetComponent<Rigidbody2D> ();
 	}
-	
+
 	// SpriteRendererComponentを取得する
 	private SpriteRenderer GetSpriteRenderer ()
 	{
