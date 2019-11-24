@@ -101,8 +101,8 @@ public class CharacterHandler : MonoBehaviour
 	{
 		// デバッグログ
 		// 触れられているObject(される側)
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collider.gameObject.name );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collider.gameObject.tag );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name : " + collider.gameObject.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag : " + collider.gameObject.tag );
 
 		if ( collider.gameObject.tag == "Ground" )
 		{
@@ -110,7 +110,7 @@ public class CharacterHandler : MonoBehaviour
 			IsGround = true;
 
 			// デバッグログ
-			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround : " + IsGround );
 
 			// 接地したら空中でジャンプした回数をリセット
 			TimesJumpedInAir = 0;
@@ -127,12 +127,12 @@ public class CharacterHandler : MonoBehaviour
 			{
 				// 重複するAlphabetは格納しない
 				// デバッグログ
-				Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  This alphabet is duplicate in list :" + DividedString[1] );
+				Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  This alphabet is duplicate in list : " + DividedString[1] );
 			}
 
 			// デバッグログ
-			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  DividedString[1] :" + DividedString[1] );
-			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  AcquiredAlphabetList.Count :" + AcquiredAlphabetList.Count );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  DividedString[1] : " + DividedString[1] );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  AcquiredAlphabetList.Count : " + AcquiredAlphabetList.Count );
 
 			// 取得したAlphabetObjectは削除
 			Destroy ( collider.gameObject );
@@ -144,8 +144,8 @@ public class CharacterHandler : MonoBehaviour
 	{
 		// デバッグログ
 		// 触れられているObject(される側)
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collider.gameObject.name );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collider.gameObject.tag );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name : " + collider.gameObject.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag : " + collider.gameObject.tag );
 
 		if ( collider.gameObject.tag == "Ground" )
 		{
@@ -153,7 +153,7 @@ public class CharacterHandler : MonoBehaviour
 			IsGround = false;
 
 			// デバッグログ
-			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround : " + IsGround );
 		}
 	}
 

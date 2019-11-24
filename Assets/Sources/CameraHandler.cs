@@ -26,7 +26,7 @@ public class CameraHandler : MonoBehaviour
 		CameraPositionZ = -10.0f;
 
 		// デバッグログ
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  OffsetHeight :" + OffsetHeight );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  OffsetHeight : " + OffsetHeight );
 	}
 
 	void LateUpdate()
