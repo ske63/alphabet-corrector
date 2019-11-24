@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 829634853}
   - component: {fileID: 829634852}
   - component: {fileID: 829634855}
+  - component: {fileID: 829634857}
   - component: {fileID: 829634856}
   - component: {fileID: 829634858}
   m_Layer: 0
@@ -888,6 +889,32 @@ MonoBehaviour:
   IdleSprite: {fileID: 21300000, guid: fee223ddc5eb4314886f724278f6f624, type: 3}
   MoveSprite: {fileID: 21300000, guid: d31ec00ef0cdd294380927f1703eadc5, type: 3}
   JumpSprite: {fileID: 21300000, guid: 6392073b8001f2d4d8b18ab4840137c6, type: 3}
+--- !u!61 &829634857
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829634851}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04071921, y: -3.6043918}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.63, y: 8}
+    newSize: {x: 5.63, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3243324, y: 0.9415946}
+  m_EdgeRadius: 0
 --- !u!114 &829634858
 MonoBehaviour:
   m_ObjectHideFlags: 0

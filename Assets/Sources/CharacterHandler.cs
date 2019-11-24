@@ -97,14 +97,14 @@ public class CharacterHandler : MonoBehaviour
 // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== 
 
 	// Objectに触れたときに自動で呼び出し
-	void OnCollisionEnter2D ( Collision2D collision )
+	void OnTriggerEnter2D ( Collider2D collider )
 	{
 		// デバッグログ
 		// 触れられているObject(される側)
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collision.gameObject.name );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collision.gameObject.tag );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collider.gameObject.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collider.gameObject.tag );
 
-		if ( collision.gameObject.tag == "Ground" )
+		if ( collider.gameObject.tag == "Ground" )
 		{
 			// GameObjectのTagが"Ground"の場合、接地として扱う
 			IsGround = true;
@@ -115,39 +115,20 @@ public class CharacterHandler : MonoBehaviour
 			// 接地したら空中でジャンプした回数をリセット
 			TimesJumpedInAir = 0;
 		}
-	}
-
-	// Objectから離れたときに自動で呼び出し
-	void OnCollisionExit2D ( Collision2D collision )
-	{
-		// デバッグログ
-		// 触れられているObject(される側)
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collision.gameObject.name );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collision.gameObject.tag );
-
-		if ( collision.gameObject.tag == "Ground" )
-		{
-			// GameObjectのTagが"Ground"の場合、地面から離れたとして扱う
-			IsGround = false;
-
-			// デバッグログ
-			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
-		}
-	}
-
-	// Objectに触れたときに自動で呼び出し
-	void OnTriggerEnter2D ( Collider2D collider )
-	{
-		// デバッグログ
-		// 触れられているObject(される側)
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collider.gameObject.name );
-		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collider.gameObject.tag );
-
-		if ( collider.gameObject.tag == "Item-Alphabet" )
+		else if ( collider.gameObject.tag == "Item-Alphabet" )
 		{
 			// 触れたAlphabetを取得リストに格納
 			string[] DividedString = collider.gameObject.name.Split ( '-' );
-			AcquiredAlphabetList.Add ( DividedString[1] );
+			if ( !AcquiredAlphabetList.Contains ( DividedString[1] ) )
+			{
+				AcquiredAlphabetList.Add ( DividedString[1] );
+			}
+			else
+			{
+				// 重複するAlphabetは格納しない
+				// デバッグログ
+				Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  This alphabet is duplicate in list :" + DividedString[1] );
+			}
 
 			// デバッグログ
 			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  DividedString[1] :" + DividedString[1] );
@@ -155,6 +136,24 @@ public class CharacterHandler : MonoBehaviour
 
 			// 取得したAlphabetObjectは削除
 			Destroy ( collider.gameObject );
+		}
+	}
+
+	// Objectから離れたときに自動で呼び出し
+	void OnTriggerExit2D ( Collider2D collider )
+	{
+		// デバッグログ
+		// 触れられているObject(される側)
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object name :" + collider.gameObject.name );
+		Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  Touched Object tag :" + collider.gameObject.tag );
+
+		if ( collider.gameObject.tag == "Ground" )
+		{
+			// GameObjectのTagが"Ground"の場合、地面から離れたとして扱う
+			IsGround = false;
+
+			// デバッグログ
+			Debug.Log ( "Class-" + this.GetType().Name + " Method-" + MethodBase.GetCurrentMethod().Name + "  IsGround :" + IsGround );
 		}
 	}
 
